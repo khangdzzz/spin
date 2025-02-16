@@ -2,49 +2,42 @@
 import { Wheel } from "spin-wheel";
 
 let modifier = 0;
+const result = ref('');
 const wheel = ref(null)
+const idDisableBtn = ref(false);
 
 
 const initProject = async () => {
-  await loadFonts(props.map(i => i.itemLabelFont));
+  await loadFonts(props.itemLabelFont);
 
   wheel.value = new Wheel(document.querySelector('.wheel-wrapper'));
-  const dropdown = document.querySelector('select');
 
   const images = [];
 
-  for (const p of props) {
-    // Initalise dropdown with the names of each example:
-    const opt = document.createElement('option');
-    opt.textContent = p.name;
-    dropdown.append(opt);
-
-    // Convert image urls into actual images:
-    images.push(initImage(p, 'image'));
-    images.push(initImage(p, 'overlayImage'));
-    for (const item of p.items) {
-      images.push(initImage(item, 'image'));
-    }
+  images.push(initImage(props, 'image'));
+  images.push(initImage(props, 'overlayImage'));
+  for (const item of props.items) {
+    images.push(initImage(item, 'image'));
   }
 
   await loadImages(images);
 
-  // Show the wheel once everything has loaded
   document.querySelector('.wheel-wrapper').style.visibility = 'visible';
 
-  // Handle dropdown change:
-  dropdown.onchange = () => {
-    wheel.value.init({
-      ...props[dropdown.selectedIndex],
-      rotation: wheel.value.rotation, // Preserve value.
-    });
-  };
-
-  // Select default:
-  dropdown.options[0].selected = 'selected';
-  dropdown.onchange();
-
-
+  wheel.value.init({
+    ...props,
+    rotation: wheel.value.rotation,
+    onCurrentIndexChange: ({currentIndex}) => {
+      result.value = props.items[currentIndex].label;
+    },
+    onRest: () => {
+      alert(`🎉! Bạn đã quay trúng thưởng ${result.value} 🏆✨!`)
+      sendMessage(result.value);
+    },
+    onSpin:() => {
+      idDisableBtn.value = true
+    },
+  });
 }
 
 const spin = () => {
@@ -54,10 +47,12 @@ const spin = () => {
 
 const calcSpinToValues = () => {
     const duration = 3000;
-    const winningItemRotaion = getRandomInt(360, 360 * 1.75) + modifier;
-    modifier += 360 * 1.75;
+    const winningItemRotaion = getRandomInt(360, 360 * 3) + modifier;
+
+    modifier += 360 * 3;
+
     return {duration, winningItemRotaion};
-  }
+}
 
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
@@ -77,14 +72,25 @@ onMounted(async () => {
   await initProject();
 });
 
+const sendMessage = async (text) => {
+  try {
+    const response = await $fetch('/api/telegram', {
+      method: 'POST',
+      body: { message: `🎉 Chúc mừng! Bạn đã quay trúng thưởng ${text} 🏆✨` }
+    });
+    console.log(response);
+  } catch (error) {
+    console.error('Error sending message:', error);
+  }
+};
+
 </script>
 
 <template>
   <div class="gui-wrapper">
-    <p>Click-drag (or touch-flick) to spin the wheel.</p>
+    <p>Chào mừng bạn đến với vòng quay may mắn của RUNNING STORE!</p>
     <div>
-      <button @click="spin">Spin</button>
-      <p><label>Theme:</label><select></select></p>
+      <button @click="spin" :disabled="idDisableBtn">QUAY</button>
     </div>
   </div>
 
@@ -132,7 +138,7 @@ body {
   visibility: hidden;
 
   overflow: hidden;
-  height: 100%;
+  height: calc(100vh - 125px);
   width: 100%;
 }
 
