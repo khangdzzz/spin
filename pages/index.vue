@@ -26,6 +26,7 @@ const initProject = async () => {
 
   wheel.value.init({
     ...props,
+    isInteractive: false,
     rotation: wheel.value.rotation,
     onCurrentIndexChange: ({currentIndex}) => {
       result.value = props.items[currentIndex].label;
