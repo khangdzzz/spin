@@ -33,7 +33,6 @@ const initProject = async () => {
     },
     onRest: () => {
       idDisableBtn.value = false
-      alert(`🎉! Bạn đã quay trúng thưởng ${result.value} 🏆✨!`)
       sendMessage(result.value);
     },
     onSpin:() => {
@@ -91,12 +90,13 @@ const sendMessage = async (text) => {
 <template>
   <div class="gui-wrapper">
     <p>Chào mừng bạn đến với vòng quay may mắn của RUNNING STORE!</p>
-    <div>
-      <button @click="spin" :disabled="idDisableBtn">QUAY</button>
-    </div>
   </div>
 
-  <div class="wheel-wrapper" ref="wheelContainer"></div>
+  <div class="wheel-wrapper" ref="wheelContainer">
+    <div class="btn-spin" @click="spin" :class="{ 'disabled': idDisableBtn }">
+      <span>{{result || 'QUAY'}}</span>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -142,6 +142,21 @@ body {
   overflow: hidden;
   height: calc(100vh - 125px);
   width: 100%;
+  position: relative;
+}
+
+.btn-spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 28px 15px;
+  border-radius: 50%;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .gui-wrapper {
