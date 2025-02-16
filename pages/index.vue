@@ -31,6 +31,7 @@ const initProject = async () => {
       result.value = props.items[currentIndex].label;
     },
     onRest: () => {
+      idDisableBtn.value = false
       alert(`🎉! Bạn đã quay trúng thưởng ${result.value} 🏆✨!`)
       sendMessage(result.value);
     },
