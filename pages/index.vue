@@ -38,6 +38,11 @@ const initProject = async () => {
         isShowFireworks.value = true;
         isShowroomMessage.value = true;
         sendMessage(result.value);
+
+        setTimeout(() => {
+          isShowroomMessage.value = false
+          isShowFireworks.value = false
+        }, 3000)
       },
       onSpin: () => {
         idDisableBtn.value = true;
@@ -97,7 +102,7 @@ const sendMessage = async (text) => {
     <p class="title">Chào mừng bạn đến với vòng quay may mắn của RUNNING STORE!</p>
   </div>
   <Fireworks :is-show="isShowFireworks" ></Fireworks>
-  <Toast :message="'🎉 Chúc mừng! Bạn đã quay trúng thưởng:' + result + 'VND 🏆✨'" :is-visible="isShowroomMessage"></Toast>
+  <Toast :message="'🎉 Bạn đã quay trúng thưởng:' + result + 'VND 🏆✨'" :is-visible="isShowroomMessage"></Toast>
 
   <div class="wheel-wrapper" ref="wheelContainer">
     <div class="btn-spin" @click="spin" :class="{ 'disabled': idDisableBtn }">

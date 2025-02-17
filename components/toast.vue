@@ -47,13 +47,7 @@ watch(
 }
 
 .message {
-    font-size: 32px;
-}
-
-@media screen and (min-width: 600px) {
-  .message {
-    font-size: 16px !important;
-  }
+    font-size: 28px;
 }
 
 .success { background: #28a745; }
