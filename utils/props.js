@@ -20,33 +20,33 @@ export const props = {
     overlayImage: './img/example-3-overlay.svg',
     items: [
       {
-        label: '10.000',
-      },
-      {
-        label: '20.000',
-      },
-      {
-        label: '100.000',
-        weight: 0.5,
-        backgroundColor: '#f23925',
-        labelColor: '#fff',
-      },
-      {
-        label: '30.000',
-      },
-      {
-        label: '40.000',
-      },
-      {
         label: '50.000',
-        weight: 0.8,
-        backgroundColor: '#b1ddff',
       },
       {
         label: '60.000',
       },
       {
+        label: '300.000',
+        weight: 0.4,
+        backgroundColor: '#f23925',
+        labelColor: '#fff',
+      },
+       {
+        label: '70.000',
+      },
+      {
         label: '80.000',
+      },
+      {
+        label: '150.000',
+        weight: 0.6,
+        backgroundColor: '#b1ddff',
+      },
+      {
+        label: '50.000',
+      },
+      {
+        label: '60.000',
       },
       {
         label: '500.000',
@@ -55,37 +55,37 @@ export const props = {
         labelColor: '#fff',
       },
       {
-        label: '30.000',
-      },
-      {
-        label: '40.000',
-      },
-      {
-        label: '50.000',
-        weight: 0.8,
-        backgroundColor: '#b1ddff',
-      },
-      {
-        label: '60.000',
+        label: '70.000',
       },
       {
         label: '80.000',
       },
       {
-        label: '200.000',
+        label: '150.000',
         weight: 0.6,
+        backgroundColor: '#b1ddff',
+      },
+      {
+        label: '50.000',
+      },
+      {
+        label: '60.000',
+      },
+      {
+        label: '200.000',
+        weight: 0.5,
         backgroundColor: '#f23925',
         labelColor: '#fff',
       },
-       {
-        label: '30.000',
+      {
+        label: '70.000',
       },
       {
-        label: '40.000',
+        label: '80.000',
       },
       {
-        label: '200.000',
-        weight: 0.8,
+        label: '150.000',
+        weight: 0.6,
         backgroundColor: '#b1ddff',
       },
     ],

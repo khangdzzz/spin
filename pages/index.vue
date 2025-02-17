@@ -5,6 +5,8 @@ let modifier = 0;
 const result = ref('');
 const wheel = ref(null)
 const idDisableBtn = ref(false);
+const isShowFireworks = ref(false);
+const isShowroomMessage = ref(false);
 
 
 const initProject = async () => {
@@ -21,23 +23,26 @@ const initProject = async () => {
   }
 
   await loadImages(images);
+  
+  nextTick(() => {
+    document.querySelector('.wheel-wrapper').style.visibility = 'visible';
 
-  document.querySelector('.wheel-wrapper').style.visibility = 'visible';
-
-  wheel.value.init({
-    ...props,
-    isInteractive: false,
-    rotation: wheel.value.rotation,
-    onCurrentIndexChange: ({currentIndex}) => {
-      result.value = props.items[currentIndex].label;
-    },
-    onRest: () => {
-      idDisableBtn.value = false
-      sendMessage(result.value);
-    },
-    onSpin:() => {
-      idDisableBtn.value = true
-    },
+    wheel.value.init({
+      ...props,
+      isInteractive: false,
+      rotation: wheel.value.rotation,
+      onCurrentIndexChange: ({ currentIndex }) => {
+        result.value = props.items[currentIndex].label;
+      },
+      onRest: () => {
+        isShowFireworks.value = true;
+        isShowroomMessage.value = true;
+        sendMessage(result.value);
+      },
+      onSpin: () => {
+        idDisableBtn.value = true;
+      },
+    });
   });
 }
 
@@ -91,6 +96,8 @@ const sendMessage = async (text) => {
   <div class="gui-wrapper">
     <p>Chào mừng bạn đến với vòng quay may mắn của RUNNING STORE!</p>
   </div>
+  <Fireworks :is-show="isShowFireworks" ></Fireworks>
+  <Toast :message="'🎉 Chúc mừng! Bạn đã quay trúng thưởng:' + result + 'VND 🏆✨'" :is-visible="isShowroomMessage"></Toast>
 
   <div class="wheel-wrapper" ref="wheelContainer">
     <div class="btn-spin" @click="spin" :class="{ 'disabled': idDisableBtn }">
@@ -163,7 +170,7 @@ body {
   padding: 10px;
   background-color: #f3f3f3;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 10px;
 }
 
