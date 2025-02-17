@@ -43,15 +43,16 @@ watch(
   font-size: 16px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.3s ease-in-out;
+  z-index: 9999;
 }
 
 .message {
-    font-size: 12px;
+    font-size: 32px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 600px) {
   .message {
-    font-size: 32px !important;
+    font-size: 16px !important;
   }
 }
 
