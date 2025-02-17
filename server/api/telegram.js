@@ -9,7 +9,10 @@ const bot = new TelegramBot(token, { polling: false });
 export default defineEventHandler(async (event) => {
     try {
         const body = await readBody(event);
-        console.log(body);
+        if (typeof body === "string") {
+            console.log(body);
+            body = JSON.parse(body); // Chuyển đổi nếu cần
+        }
         const message = body["message"] || 'Default message';
         console.log(message);
 
