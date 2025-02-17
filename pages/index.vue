@@ -89,7 +89,6 @@ const sendMessage = async (text) => {
       method: 'POST',
       body: { message: `🎉 Chúc mừng! Bạn đã quay trúng thưởng ${text} 🏆✨` }
     });
-    console.log(response);
   } catch (error) {
     console.error('Error sending message:', error);
   }
