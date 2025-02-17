@@ -94,7 +94,7 @@ const sendMessage = async (text) => {
 
 <template>
   <div class="gui-wrapper">
-    <p>Chào mừng bạn đến với vòng quay may mắn của RUNNING STORE!</p>
+    <p class="title">Chào mừng bạn đến với vòng quay may mắn của RUNNING STORE!</p>
   </div>
   <Fireworks :is-show="isShowFireworks" ></Fireworks>
   <Toast :message="'🎉 Chúc mừng! Bạn đã quay trúng thưởng:' + result + 'VND 🏆✨'" :is-visible="isShowroomMessage"></Toast>
@@ -176,6 +176,12 @@ body {
   flex-direction:row;
   gap: 10px;
   align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 32px; 
+  }
 }
 
 select {

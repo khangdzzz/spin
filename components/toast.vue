@@ -35,7 +35,7 @@ watch(
 <style scoped>
 .toast {
   position: fixed;
-  top: 80px;
+  top: 115px;
   right: 0;
   padding: 12px 20px;
   border-radius: 6px;
@@ -45,14 +45,22 @@ watch(
   animation: fadeIn 0.3s ease-in-out;
 }
 
+.message {
+    font-size: 12px;
+}
+
+@media screen and (max-width: 600px) {
+  .message {
+    font-size: 32px !important;
+  }
+}
+
 .success { background: #28a745; }
 .error { background: #dc3545; }
 .warning { background: #ffc107; color: #333; }
 .info { background: #17a2b8; }
 
-.message {
-    font-size: 12px;
-}
+
 
 .close-btn {
   background: transparent;
