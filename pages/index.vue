@@ -183,10 +183,6 @@ body {
   align-items: center;
 }
 
-.title {
-    font-size: 32px !important; 
-}
-
 select {
   padding: 2px;
 }

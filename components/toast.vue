@@ -47,7 +47,7 @@ watch(
 }
 
 .message {
-    font-size: 28px;
+    font-size: 16px;
 }
 
 .success { background: #28a745; }
