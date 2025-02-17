@@ -24,11 +24,6 @@ watch(
   () => props.isVisible,
   (newValue) => {
     visible.value = newValue;
-    if (newValue) {
-      setTimeout(() => {
-        visible.value = false;
-      }, props.duration);
-    }
 })
 </script>
 

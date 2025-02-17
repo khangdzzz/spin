@@ -23,7 +23,7 @@ const initProject = async () => {
   }
 
   await loadImages(images);
-  
+
   nextTick(() => {
     document.querySelector('.wheel-wrapper').style.visibility = 'visible';
 
@@ -143,9 +143,6 @@ body {
 }
 
 .wheel-wrapper {
-  /* Hide UI during page load */
-  visibility: hidden;
-
   overflow: hidden;
   height: calc(100vh - 125px);
   width: 100%;
