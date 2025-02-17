@@ -178,10 +178,8 @@ body {
   align-items: center;
 }
 
-@media screen and (max-width: 600px) {
-  .title {
-    font-size: 32px; 
-  }
+.title {
+    font-size: 32px !important; 
 }
 
 select {
