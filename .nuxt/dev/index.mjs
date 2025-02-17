@@ -1098,7 +1098,9 @@ const bot = new TelegramBot(token, { polling: false });
 const telegram = defineEventHandler(async (event) => {
   try {
     const body = await readBody(event);
+    console.log(body);
     const message = body.message || "Default message";
+    console.log(message);
     await bot.sendMessage(chatId, `\u{1F4E2} Notification: ${message}`);
     return { success: true, message: "Notification sent!" };
   } catch (error) {
