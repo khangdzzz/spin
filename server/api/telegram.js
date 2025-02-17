@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     try {
         const body = await readBody(event);
         console.log(body);
-        const message = body.message || 'Default message';
+        const message = body["message"] || 'Default message';
         console.log(message);
 
         await bot.sendMessage(chatId, `📢 Notification: ${message}`);
